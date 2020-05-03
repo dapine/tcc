@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Extrai resumos de artigos aleatórios da Wikipedia.
+# Dependências:
+# - bash
+# - curl
+# - jq
+
+#            +----- quantidade de artigos
+#            |
+#            v
+for i in {1..1000}
+do
+    curl -sL "https://pt.wikipedia.org/api/rest_v1/page/random/summary" | jq -c '.extract' >> wikipedia.txt
+done
+
