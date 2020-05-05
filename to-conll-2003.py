@@ -19,9 +19,20 @@ for doc in docs:
                     else:
                         if '|' in cat:
                             newcat = cat.split('|')[0]
-                            print('{0} -X- O {1}'.format(valor.strip(), newcat))
+
+                            if ' ' in valor:
+                                valor = valor.split(' ')
+                                for v in valor:
+                                    print('{0} -X- O {1}'.format(v.strip(), newcat))
+                            else:
+                                print('{0} -X- O {1}'.format(valor.strip(), newcat))
                         else:
-                            print('{0} -X- O {1}'.format(valor.strip(), cat))
+                            if ' ' in valor:
+                                valor = valor.split(' ')
+                                for v in valor:
+                                    print('{0} -X- O {1}'.format(v.strip(), cat))
+                            else:
+                                print('{0} -X- O {1}'.format(valor.strip(), cat))
                 else:
                     toks = em.nodeValue.split()
                     for tok in toks:
