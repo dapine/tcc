@@ -167,3 +167,8 @@ Reino LOC
 Galiza ORG
 Portugal LOC
 ```
+
+Links úteis:
+
+[CLI spaCy](https://spacy.io/api/cli)
+[Carregando e usando modelos](https://spacy.io/usage/saving-loading#models)
