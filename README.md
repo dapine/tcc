@@ -111,3 +111,59 @@ $ java -cp stanford-ner.jar edu.stanford.nlp.ie.crf.CRFClassifier -loadClassifie
 Links úteis:
 
 [FAQ Stanford NER CRF](https://nlp.stanford.edu/software/crf-faq.html#a)
+
+## spaCy
+
+Primeiro é necessário converter o corpus original (arquivo .xml) no formato aceito pela ferramenta de linha de comando do spaCy. Esses formatos são: conll, conllu, conllubio, ner (etiquetas IOB/IOB2 com um token por linha), iob e jsonl.
+
+O arquivo to-iob.py converte o HAREM em XML para o formato iob. Então, precisamos primeiro executar o comando:
+
+```
+$ python3 to-iob.py > harem.iob
+```
+
+para gerar o arquivo neste formato. Após isso, executamos a ferramenta do spaCy para converter nosso formato IOB para JSON.
+
+```
+$ python -m spacy convert [input_file] [output_dir] [--file-type] [--converter]
+[--n-sents] [--morphology] [--lang]
+```
+```
+$ python3 -m spacy convert harem.iob . -c iob
+```
+
+Então, nosso corpus de treinamento está em formato `.json` aceito pela ferramenta.
+O próximo passo é treinar o modelo. Para isso, o comando é:
+
+```
+$ python -m spacy train [lang] [output_path] [train_path] [dev_path]
+[--base-model] [--pipeline] [--vectors] [--n-iter] [--n-early-stopping]
+[--n-examples] [--use-gpu] [--version] [--meta-path] [--init-tok2vec]
+[--parser-multitasks] [--entity-multitasks] [--gold-preproc] [--noise-level]
+[--orth-variant-level] [--learn-tokens] [--textcat-arch] [--textcat-multilabel]
+[--textcat-positive-label] [--verbose]
+```
+
+Ex.:
+
+```
+$ python3 -m spacy train pt models harem.json harem-dev.json
+```
+
+Após isso, a pasta `models` é criada, com todos os modelo para cada iteração junto com o melhor modelo (model-best) e o modelo final (model-final).
+
+Agora, basta carregar este modelo para que se possa identificar as entidades. Isso pode ser feito através do próprio REPL do Python.
+
+```
+$ python3
+
+>>> import spacy
+>>> nlp = spacy.load('models/model-best')
+>>> doc = nlp('A língua portuguesa, também designada português, é uma língua românica flexiva ocidental originada no galego-português falado no Reino da Galiza e no norte de Portugal.')
+>>> for ent in doc.ents:
+...     print(ent.text, ent.label_)
+...
+Reino LOC
+Galiza ORG
+Portugal LOC
+```
