@@ -22,17 +22,23 @@ for doc in docs:
 
                             if ' ' in valor:
                                 valor = valor.split(' ')
-                                for v in valor:
-                                    print('{0} -X- O {1}'.format(v.strip(), newcat))
+                                for i, v in enumerate(valor):
+                                    if i == 0:
+                                        print('{0} -X- O B-{1}'.format(v.strip(), newcat))
+                                    else:
+                                        print('{0} -X- O I-{1}'.format(v.strip(), newcat))
                             else:
-                                print('{0} -X- O {1}'.format(valor.strip(), newcat))
+                                print('{0} -X- O I-{1}'.format(valor.strip(), newcat))
                         else:
                             if ' ' in valor:
                                 valor = valor.split(' ')
-                                for v in valor:
-                                    print('{0} -X- O {1}'.format(v.strip(), cat))
+                                for i, v in enumerate(valor):
+                                    if i == 0:
+                                        print('{0} -X- O B-{1}'.format(v.strip(), cat))
+                                    else:
+                                        print('{0} -X- O I-{1}'.format(v.strip(), cat))
                             else:
-                                print('{0} -X- O {1}'.format(valor.strip(), cat))
+                                print('{0} -X- O I-{1}'.format(valor.strip(), cat))
                 else:
                     toks = em.nodeValue.split()
                     for tok in toks:
