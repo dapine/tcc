@@ -15,15 +15,15 @@ fácil	O
 ,	O
 e	O
 o	O
-Detroit Pistons	O
+Detroit Pistons	ORGANIZACAO
 do	O
 fim	O
 dos	O
-anos 1980	O
+anos 1980	TEMPO
 e	O
 começo	O
 da	O
-década de 1990	O
+década de 1990	TEMPO
 sabia	O
 muito	O
 bem	O
@@ -31,9 +31,9 @@ disso	O
 quando	O
 enfrentava	O
 o	O
-Chicago Bulls	O
+Chicago Bulls	ORGANIZACAO
 de	O
-Michael Jordan	O
+Michael Jordan	PESSOA
 .	O
 Tanto	O
 que	O
@@ -51,7 +51,7 @@ três	O
 temporadas	O
 seguidas	O
 na	O
-NBA	O
+NBA	ORGANIZACAO
 se	O
 transformaram	O
 em	O
@@ -63,17 +63,17 @@ polêmicas	O
 envolvendo	O
 a	O
 ``	O
-Lei de Jordan	O
+Lei de Jordan	OBRA
 ''	O
 .	O
-Simple Minds	O
+Simple Minds	ORGANIZACAO
 é	O
 uma	O
 banda	O
 de	O
 rock	O
 da	O
-Escócia	O
+Escócia	LOCAL
 ,	O
 que	O
 atingiu	O
@@ -83,19 +83,19 @@ popularidade	O
 de	O
 meados	O
 da	O
-década de 1980	O
+década de 1980	TEMPO
 até	O
 o	O
 início	O
 da	O
-década de 1990	O
+década de 1990	TEMPO
 .	O
 Originários	O
 da	O
 zona	O
 sul	O
 de	O
-Glasgow	O
+Glasgow	LOCAL
 ,	O
 a	O
 banda	O
@@ -127,14 +127,14 @@ sucesso	O
 de	O
 público	O
 .	O
-Lei Áurea	O
+Lei Áurea	OBRA
 ,	O
 oficialmente	O
-Lei Imperial n.º 3.353	O
+Lei Imperial n.º 3.353	OBRA
 ,	O
 sancionada	O
 em	O
-13 de maio de 1888	O
+13 de maio de 1888	TEMPO
 ,	O
 foi	O
 o	O
@@ -145,7 +145,7 @@ extinguiu	O
 a	O
 escravidão	O
 no	O
-Brasil	O
+Brasil	LOCAL
 .	O
 Foi	O
 precedida	O
@@ -193,7 +193,7 @@ Saraiva-Cotegipe	O
 de	O
 28	O
 de	O
-setembro	O
+setembro	TEMPO
 de	O
 1885	O
 ,	O
@@ -215,7 +215,7 @@ abolição	O
 da	O
 escravatura	O
 no	O
-Brasil	O
+Brasil	LOCAL
 foi	O
 gradual	O
 e	O
@@ -223,9 +223,9 @@ começou	O
 com	O
 a	O
 Lei	O
-Eusébio	O
+Eusébio	PESSOA
 de	O
-Queirós	O
+Queirós	PESSOA
 de	O
 1850	O
 ,	O
@@ -280,8 +280,8 @@ Agricultura	O
 da	O
 época	O
 ,	O
-Rodrigo	O
-Augusto	O
+Rodrigo	PESSOA
+Augusto	PESSOA
 da	O
 Silva	O
 ,	O
