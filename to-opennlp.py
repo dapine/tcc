@@ -1,8 +1,11 @@
 import bs4
 import nltk
+import sys
 from bs4 import BeautifulSoup
 
-f = open('harem-utf8.xml', 'r')
+filename = sys.argv[1]
+
+f = open(filename, 'r')
 
 soup = BeautifulSoup(f, 'lxml')
 
