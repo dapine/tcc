@@ -11,7 +11,7 @@ soup = BeautifulSoup(f, 'lxml')
 
 docs = soup.find_all('doc')
 
-def pp(p):
+def pp(p, pontuacao=True):
     if type(p) is bs4.element.Tag:
         if p.name == 'em':
             categ = p.get('categ')
@@ -24,11 +24,15 @@ def pp(p):
                 print('{0}\t{1}'.format(p.string, categ))
         else:
             for x in p.contents:
-                pp(x)
+                pp(x, pontuacao)
     else:
         tokens = nltk.word_tokenize(p.string)
         for tok in tokens:
-            print('{0}\t{1}'.format(tok, 'O'))
+            if pontuacao:
+                print('{0}\t{1}'.format(tok, 'O'))
+            else:
+                if tok.isalnum():
+                    print('{0}\t{1}'.format(tok, 'O'))
 
 for doc in docs:
     for p in doc.contents:
