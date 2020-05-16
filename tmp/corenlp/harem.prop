@@ -1,5 +1,5 @@
-trainFile = harem.tsv
-serializeTo = harem-model.ser.gz
+trainFile = harem.train
+serializeTo = harem.ser.gz
 
 map = word=0,answer=1
 

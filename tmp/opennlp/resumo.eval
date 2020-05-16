@@ -1,0 +1,21 @@
+current: 299,1 sent/s avg: 299,1 sent/s total: 300 sent
+current: 491,4 sent/s avg: 394,8 sent/s total: 790 sent
+
+
+Average: 569,0 sent/s 
+Total: 1596 sent
+Runtime: 2.805s
+
+Evaluated 1595 samples with 6714 entities; found: 6742 entities; correct: 6649.
+       TOTAL: precision:   98.62%;  recall:   99.03%; F1:   98.83%.
+       VALOR: precision:  100.00%;  recall:  100.00%; F1:  100.00%. [target: 317; tp: 317; fp:   0]
+       COISA: precision:  100.00%;  recall:  100.00%; F1:  100.00%. [target: 282; tp: 282; fp:   0]
+  ABSTRACCAO: precision:   99.71%;  recall:  100.00%; F1:   99.85%. [target: 344; tp: 344; fp:   1]
+       TEMPO: precision:   99.43%;  recall:   99.62%; F1:   99.53%. [target: 1053; tp: 1049; fp:   6]
+      PESSOA: precision:   99.19%;  recall:   99.29%; F1:   99.24%. [target: 1842; tp: 1829; fp:  15]
+       OUTRO: precision:  100.00%;  recall:   98.41%; F1:   99.20%. [target:  63; tp:  62; fp:   0]
+       LOCAL: precision:   97.94%;  recall:   98.88%; F1:   98.41%. [target: 1250; tp: 1236; fp:  26]
+        OBRA: precision:   97.60%;  recall:   98.31%; F1:   97.95%. [target: 414; tp: 407; fp:  10]
+ACONTECIMENTO: precision:   97.44%;  recall:   97.44%; F1:   97.44%. [target: 273; tp: 266; fp:   7]
+ ORGANIZACAO: precision:   96.84%;  recall:   97.83%; F1:   97.33%. [target: 876; tp: 857; fp:  28]
+
