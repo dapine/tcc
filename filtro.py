@@ -40,9 +40,9 @@ def pt_br(docs, soup_meta):
 def pretty(docs):
     s = ''
     for doc in docs:
-        s += doc.prettify()
+        s += str(doc)
 
     return s
 
-print(pretty(pt_pt(docs_corpus, soup_m)))
-# print(pretty(pt_br(docs_corpus, soup_m)))
+# print(pretty(pt_pt(docs_corpus, soup_m)))
+print(pretty(pt_br(docs_corpus, soup_m)))
