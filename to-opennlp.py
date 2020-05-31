@@ -40,7 +40,17 @@ def pp(p, pontuacao=True):
         else:
             print(remover_pontuacao(p.string), end='')
 
+sents = []
+
 for doc in docs:
     for p in doc.contents:
-        pp(p)
-        print()
+        sents.append(p)
+
+sent_min = 4177
+sent_max = 4677
+
+limite_sent = sents[sent_min:sent_max]
+
+for p in limite_sent:
+    pp(p)
+    print()

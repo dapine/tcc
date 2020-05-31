@@ -24,5 +24,5 @@ tagger0 = nltk.DefaultTagger('n')
 tagger1 = nltk.UnigramTagger(train, backoff=tagger0)
 tagger2 = nltk.BigramTagger(train, backoff=tagger1)
 
-print(tagger2.tag(toks))
+print(tagger2.tag(["Olá"]))
 print(tagger2.evaluate(test))
