@@ -40,7 +40,17 @@ def pp(p):
         for tok in tokens:
             print('{0} -X- O {1}'.format(tok, 'O'))
 
+sents = []
+
 for doc in docs:
     for p in doc.contents:
-        pp(p)
-        print()
+        sents.append(p)
+
+sent_min = 0
+sent_max = 1324
+
+limite_sent = sents[sent_min:sent_max]
+
+for p in limite_sent:
+    pp(p)
+    print()

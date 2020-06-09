@@ -34,7 +34,17 @@ def pp(p, pontuacao=True):
                 if tok.isalnum():
                     print('{0}\t{1}'.format(tok, 'O'))
 
+sents = []
+
 for doc in docs:
     for p in doc.contents:
-        pp(p)
-        print()
+        sents.append(p)
+
+sent_min = 1974
+sent_max = 2773
+
+limite_sent = sents[sent_min:sent_max]
+
+for p in limite_sent:
+    pp(p)
+    print()
