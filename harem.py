@@ -4,6 +4,7 @@ class Doc:
     def __init__(self, tag):
         if type(tag) is bs4.element.Tag and tag.name == 'doc':
             self.paragrafos = []
+            self.id = tag.get('id')
             for p in tag.contents:
                 self.paragrafos.append(P(p))
 

@@ -1,10 +1,9 @@
 import bs4
-import nltk
 import sys
 from bs4 import BeautifulSoup
-from unicodedata import normalize
+from harem import *
 
-filename = 'harem-utf-sem-omitido-alt.xml'
+filename = 'harem.xml'
 # filename = sys.argv[1]
 
 f = open(filename, 'r')
@@ -12,35 +11,6 @@ f = open(filename, 'r')
 soup = BeautifulSoup(f, 'lxml')
 
 docs = soup.find_all('doc')
-
-class Doc:
-    def __init__(self, tag):
-        if type(tag) is bs4.element.Tag and tag.name == 'doc':
-            self.paragrafos = []
-            for p in tag.contents:
-                self.paragrafos.append(P(p))
-
-class P:
-    def __init__(self, tag):
-        self.lista = []
-        if type(tag) is bs4.element.Tag and tag.name == 'p':
-            for e in tag.contents:
-                self.lista.append(Em(e))
-
-class Em:
-    def __init__(self, tag):
-        if type(tag) is bs4.element.Tag:
-            self.categoria = tag.get('categ')
-            self.texto = tag.string.strip()
-            self.id = tag.get('id')
-            self.tipo = tag.get('tipo')
-            self.t = 'em'
-        else:
-            self.categoria = ''
-            self.texto = tag.string.strip()
-            self.id = ''
-            self.tipo = ''
-            self.t = 'plain_text'
 
 documentos = []
 
@@ -63,7 +33,16 @@ def todos_paragrafos(docs):
 
     return par
 
-paragrafos = todos_paragrafos(documentos)
+def todos_paragrafos2(docs):
+    par = []
+    for doc in docs:
+        for p in doc.paragrafos:
+            # retornar tupla
+            # par.append((doc.id, p))
+
+    return par
+
+paragrafos = todos_paragrafos2(documentos)
 
 # 2773
 p_min = 0
