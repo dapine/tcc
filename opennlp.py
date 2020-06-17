@@ -1,7 +1,10 @@
 import bs4
 import sys
+import random
 from bs4 import BeautifulSoup
 from harem import *
+
+stdout = sys.stdout
 
 filename = 'harem.xml'
 # filename = sys.argv[1]
@@ -33,35 +36,33 @@ def todos_paragrafos(docs):
 
     return par
 
-def todos_paragrafos2(docs):
-    par = []
-    for doc in docs:
-        for p in doc.paragrafos:
-            # retornar tupla
-            # par.append((doc.id, p))
+def print_ps(paragrafos):
+    for p in paragrafos:
+        for t in p.lista:
+            if t.t == 'em':
+                cat = t.categoria
+                if t.categoria != None and '|' in t.categoria:
+                    cat = t.categoria.split('|')[0]
 
-    return par
+                print(' <START:{}> {} <END> '.format(cat, t.texto), end='')
+            else:
+                print(t.texto, end='')
 
-paragrafos = todos_paragrafos2(documentos)
+def print_file(paragrafos, arquivo):
+    with open(arquivo, 'w') as f:
+        sys.stdout = f
+        print_ps(paragrafos)
+        sys.stdout = stdout
 
-# 2773
-p_min = 0
-p_max = 2000
+def treino_teste(paragrafos, n):
+    random.shuffle(paragrafos)
 
-limite_p = paragrafos[p_min:p_max]
-c = 0
+    treino = paragrafos[0:n]
+    teste = paragrafos[n+1:len(paragrafos)]
 
-for p in limite_p:
-    for t in p.lista:
-        if t.t == 'em':
-            cat = t.categoria
-            if t.categoria != None and '|' in t.categoria:
-                cat = t.categoria.split('|')[0]
+    print_file(treino, 'tmp/opennlp/harem-100.train')
+    print_file(teste, 'tmp/opennlp/harem-100.test')
 
-            print(' <START:{}> {} <END> '.format(cat, t.texto), end='')
-        else:
-            print(t.texto, end='')
-    if c % 2 >= 1:
-        print()
+paragrafos = todos_paragrafos(documentos)
 
-    c += 1
+treino_teste(paragrafos, 2000)

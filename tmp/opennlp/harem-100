@@ -1,0 +1,5 @@
+#!/bin/bash
+
+opennlp TokenNameFinderTrainer -model harem-100.bin -data harem-100.train -encoding UTF-8 -lang pt
+
+opennlp TokenNameFinderEvaluator -model harem-100.bin -data harem-100.test
