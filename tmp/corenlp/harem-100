@@ -1,0 +1,5 @@
+#!/bin/bash
+
+java -mx3g -cp stanford-ner.jar edu.stanford.nlp.ie.crf.CRFClassifier -prop harem-100.prop
+
+java -cp stanford-ner.jar edu.stanford.nlp.ie.crf.CRFClassifier -loadClassifier harem-100.ser.gz -testFile harem-100.test
