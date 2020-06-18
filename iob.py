@@ -89,7 +89,7 @@ elif opcao == 'ptbr':
 elif opcao == 'ptpt':
     completo(paragrafos, 569, 'tmp/spacy/ptpt.train')
 elif opcao == 'completo':
-    completo(paragrafos, 569, 'tmp/corenlp/harem.train')
+    completo(paragrafos, 569, 'tmp/spacy/harem.train')
 elif opcao == 'completo-test':
-    completo(paragrafos, 569, 'tmp/corenlp/harem-test.test')
+    completo(paragrafos, 569, 'tmp/spacy/harem-test.test')
 
