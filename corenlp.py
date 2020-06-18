@@ -6,8 +6,9 @@ from harem import *
 
 stdout = sys.stdout
 
-filename = 'harem.xml'
-# filename = sys.argv[1]
+# filename = 'harem.xml'
+opcao = sys.argv[1]
+filename = sys.argv[2]
 
 f = open(filename, 'r')
 
@@ -63,4 +64,24 @@ def treino_teste(paragrafos, n):
 
 paragrafos = todos_paragrafos(documentos)
 
-treino_teste(paragrafos, 2000)
+def completo(paragrafos, n, saida):
+    random.shuffle(paragrafos)
+
+    treino = paragrafos[0:n]
+
+    print_file(treino, saida)
+
+# pt-br = 569
+# pt-pt = 3304
+
+if opcao == 'holdout':
+    treino_teste(paragrafos, 2000)
+elif opcao == 'ptbr':
+    completo(paragrafos, 569, 'tmp/corenlp/ptbr.train')
+elif opcao == 'ptpt':
+    completo(paragrafos, 569, 'tmp/corenlp/ptpt.train')
+elif opcao == 'completo':
+    completo(paragrafos, 569, 'tmp/corenlp/harem.train')
+elif opcao == 'completo-test':
+    completo(paragrafos, 569, 'tmp/corenlp/harem.test')
+

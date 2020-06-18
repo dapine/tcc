@@ -83,6 +83,6 @@ elif opcao == 'ptbr':
 elif opcao == 'ptpt':
     completo(paragrafos, 569, 'tmp/opennlp/ptpt.train')
 elif opcao == 'completo':
-    completo(paragrafos, len(paragrafos), 'tmp/opennlp/harem.train')
+    completo(paragrafos, 569, 'tmp/opennlp/harem.train')
 elif opcao == 'completo-test':
     completo(paragrafos, 569, 'tmp/opennlp/harem.test')
