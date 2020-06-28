@@ -1,0 +1,5 @@
+#!/bin/bash
+
+java -mx3g -cp stanford-ner.jar edu.stanford.nlp.ie.crf.CRFClassifier -prop harem-holdout.prop
+
+java -cp stanford-ner.jar edu.stanford.nlp.ie.crf.CRFClassifier -loadClassifier harem-holdout.ser.gz -testFile harem.test

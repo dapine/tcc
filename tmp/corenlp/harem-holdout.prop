@@ -1,5 +1,5 @@
-trainFile = harem-100.train
-serializeTo = harem-100.ser.gz
+trainFile = harem.train
+serializeTo = harem-holdout.ser.gz
 
 map = word=0,answer=1
 
