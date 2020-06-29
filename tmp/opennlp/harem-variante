@@ -1,0 +1,5 @@
+#!/bin/bash
+
+opennlp TokenNameFinderTrainer -model harem-variante.bin -data $1 -encoding UTF-8 -lang pt
+
+opennlp TokenNameFinderEvaluator -model harem-variante.bin -data $2

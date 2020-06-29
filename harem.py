@@ -2,6 +2,7 @@ import bs4
 from bs4 import BeautifulSoup
 import random
 import sys
+import unicodedata
 
 class Doc:
     def __init__(self, tag):
@@ -71,7 +72,7 @@ def completo_mix(paragrafos, n, out_treino, out_teste, print_f, stdout):
     random.shuffle(paragrafos)
 
     treino = paragrafos[0:n]
-    teste = paragrafos[n+1:n+n]
+    teste = paragrafos[n+1:(n+n+1)]
 
     print_file(treino, out_treino, print_f, stdout)
     print_file(teste, out_teste, print_f, stdout)
@@ -82,6 +83,11 @@ def completo(paragrafos, n, saida, print_f, stdout):
     treino = paragrafos[0:n]
 
     print_file(treino, saida, print_f, stdout)
+
+def remover_acentuacao(s):
+   return ''.join(c for c in unicodedata.normalize('NFD', s)
+                  if unicodedata.category(c) != 'Mn')
+
 
 def cli(paragrafos, opcao, variante, caminho, print_f, stdout, porcentagem=0.7):
     if opcao == 'holdout':
@@ -98,7 +104,9 @@ def cli(paragrafos, opcao, variante, caminho, print_f, stdout, porcentagem=0.7):
         elif variante == 'ptpt':
             completo(paragrafos, 569, caminho+'ptpt.train', print_f, stdout)
         elif variante == 'mix':
-            completo_mix(paragrafos, 569, caminho+'harem.train', caminho+'harem.test', print_f, stdout)
+            completo(paragrafos, 569, caminho+'mix.train', print_f, stdout)
+        elif variante == 'mix2':
+            completo_mix(paragrafos, round(len(paragrafos)*0.5), caminho+'harem.train', caminho+'harem.test', print_f, stdout)
     else:
         ajuda()
 
