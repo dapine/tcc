@@ -1,0 +1,10 @@
+#!/bin/bash
+
+rm json/*
+python3 -m spacy convert ptpt.train json/ -c iob
+python3 -m spacy convert ptbr.train json/ -c iob
+
+rm -rf models/harem-holdout/*
+python3 -m spacy train pt models/harem-ptpt/ json/ptpt.json json/ptpt.json
+
+python3 -m spacy evaluate models/harem-ptpt/model-best/ json/ptbr.json
