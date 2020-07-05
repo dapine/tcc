@@ -64,5 +64,5 @@ def print_docs_sem_acento(documentos):
 documentos = get_docs(f)
 paragrafos = todos_paragrafos(documentos)
 
-# cli(documentos, opcao, variante, 'tmp/opennlp/', print_docs_sem_acento, stdout, porcentagem)
-cli(paragrafos, opcao, variante, 'tmp/opennlp/', print_ps, stdout, porcentagem)
+cli(documentos, opcao, variante, 'tmp/opennlp/', print_docs_sem_acento, stdout, porcentagem)
+# cli(paragrafos, opcao, variante, 'tmp/opennlp/', print_ps, stdout, porcentagem)
