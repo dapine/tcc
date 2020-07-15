@@ -1,16 +1,3 @@
-import bs4
-from harem import *
-import sys
-
-stdout = sys.stdout
-
-filename = sys.argv[1]
-opcao = sys.argv[2]
-variante = sys.argv[3]
-porcentagem = sys.argv[4]
-
-f = open(filename, 'r')
-
 def print_ps(paragrafos):
     for p in paragrafos:
         for t in p.lista:
@@ -60,9 +47,3 @@ def print_docs_sem_acento(documentos):
                     print(' <START:{}> {} <END> '.format(cat, t.texto), end='')
                 else:
                     print(t.texto, end='')
-
-documentos = get_docs(f)
-paragrafos = todos_paragrafos(documentos)
-
-cli(documentos, opcao, variante, 'tmp/opennlp/', print_docs_sem_acento, stdout, porcentagem)
-# cli(paragrafos, opcao, variante, 'tmp/opennlp/', print_ps, stdout, porcentagem)
