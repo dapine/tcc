@@ -4,11 +4,15 @@ import random
 import sys
 import unicodedata
 
+metadata = open('harem/metadata-segundo-harem-utf8.xml', 'r')
+soup_meta = BeautifulSoup(metadata, 'lxml')
+
 class Doc:
     def __init__(self, tag):
         if type(tag) is bs4.element.Tag and tag.name == 'doc':
             self.paragrafos = []
             self.id = tag.get('id')
+            self.variant = variant(tag, soup_meta)
             for p in tag.contents:
                 self.paragrafos.append(P(p))
 
@@ -45,7 +49,7 @@ def get_docs(f):
 
     return documentos
 
-def todos_paragrafos(docs):
+def get_paragraphs(docs):
     par = []
     for doc in docs:
         for p in doc.paragrafos:
@@ -59,7 +63,7 @@ def print_file(paragrafos, arquivo, print_ps, stdout):
         print_ps(paragrafos)
         sys.stdout = stdout
 
-def treino_teste(paragrafos, n, out_treino, out_teste, print_f, stdout):
+def train_test(paragrafos, n, out_treino, out_teste, print_f, stdout):
     random.shuffle(paragrafos)
 
     treino = paragrafos[0:n]
@@ -88,36 +92,7 @@ def remover_acentuacao(s):
    return ''.join(c for c in unicodedata.normalize('NFD', s)
                   if unicodedata.category(c) != 'Mn')
 
+def variant(doc, soup_meta):
+    v = soup_meta.find_all(attrs={"docid": doc.get('docid')})
 
-def cli(paragrafos, opcao, variante, caminho, print_f, stdout, porcentagem=0.7):
-    if opcao == 'holdout':
-        p = float(porcentagem)
-        if variante == 'ptbr':
-            treino_teste(paragrafos, round(len(paragrafos)*p), caminho+'ptbr-holdout.train', caminho+'ptbr-holdout.test', print_f, stdout)
-        elif variante == 'ptpt':
-            treino_teste(paragrafos, round(len(paragrafos)*p), caminho+'ptpt-holdout.train', caminho+'ptpt-holdout.test', print_f, stdout)
-        else:
-            treino_teste(paragrafos, round(len(paragrafos)*p), caminho+'harem.train', caminho+'harem.test', print_f, stdout)
-    elif opcao == 'completo':
-        if variante == 'ptbr':
-            completo(paragrafos, 569, caminho+'ptbr.train', print_f, stdout)
-        elif variante == 'ptpt':
-            completo(paragrafos, 569, caminho+'ptpt.train', print_f, stdout)
-        elif variante == 'mix':
-            completo(paragrafos, 569, caminho+'mix.train', print_f, stdout)
-        elif variante == 'mix2':
-            completo_mix(paragrafos, round(len(paragrafos)*0.5), caminho+'harem.train', caminho+'harem.test', print_f, stdout)
-    else:
-        ajuda()
-
-def ajuda():
-        print('Instruções de uso: opennlp.py [arquivo-harem] [opcao] [variante] [porcentagem]')
-        print('opcao:')
-        print('\tholdout')
-        print('\tcompleto')
-        print('variante:')
-        print('\tptbr')
-        print('\tptpt')
-        print('\tmix')
-        print('porcentagem:')
-        print('\t0.0 - 1.0')
+    return v[0].find("variante").get_text()

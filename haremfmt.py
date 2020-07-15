@@ -30,27 +30,45 @@ filename = vargs['filename'][0]
 output = vargs['output']
 split = vargs['split']
 level = vargs['level']
-variant = vargs['variant']
-if variant is None:
-    variant = 'harem'
+variant = vargs['variant'] or 'harem'
 
 f = open(filename, 'r')
+metadata = open('harem/colSegundoHAREM-meta.xml', 'r')
 
-documentos = get_docs(f)
-paragrafos = todos_paragrafos(documentos)
+documents = get_docs(f)
+paragraphs = get_paragraphs(documents)
 
-levels = {
-        'document': documentos,
-        'paragraph': paragrafos
-}
+# List comprehend this
+ptbr_docs = []
+ptpt_docs = []
+for doc in documents:
+    if doc.variant == 'pt_BR':
+        ptbr_docs.append(doc)
+    elif doc.variant == 'pt_PT':
+        ptpt_docs.append(doc)
+
+# levels = {
+#         'document': documents,
+#         'paragraph': paragraphs
+# }
 
 printers = {
         'opennlp': { 'document': opennlp.print_docs,
                      'paragraph': opennlp.print_ps },
         'corenlp': { 'document': corenlp.print_docs,
                      'paragraph': corenlp.print_ps },
-        'spacy': { 'document': iob.print_docs,
+        'spacy':   { 'document': iob.print_docs,
                      'paragraph': iob.print_ps },
 }
 
-treino_teste(levels[level], round(len(levels[level])*split), variant+'.train', variant+'.test', printers[output][level], stdout)
+variants = {
+        'pt-br': { 'document': ptbr_docs, 'paragraph': get_paragraphs(ptbr_docs) },
+        'pt-pt': { 'document': ptpt_docs, 'paragraph': get_paragraphs(ptpt_docs) },
+        'harem': { 'document': documents, 'paragraph': paragraphs }
+}
+
+x = round(len(variants[variant][level])*split)
+print(x)
+
+train_test(variants[variant][level], round(len(variants[variant][level])*split),
+        variant+'.train', variant+'.test', printers[output][level], stdout)
