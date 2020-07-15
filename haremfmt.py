@@ -4,17 +4,24 @@ import sys
 
 import opennlp
 import corenlp
+import iob
 
 from harem import *
 
 stdout = sys.stdout
 
 parser = argparse.ArgumentParser(description='HAREM Formatter')
-parser.add_argument('filename', metavar='filename', type=str, nargs=1, help='XML HAREM file')
-parser.add_argument('-o', '--output', help='Output format. Either opennlp, corenlp, spacy')
-parser.add_argument('-s', '--split', type=float, help='Splits output given percentage')
-parser.add_argument('-l', '--level', type=str, help='Split level. Either "entity", "paragraph", "document"')
-parser.add_argument('-v', '--variant', type=str, help='Portuguese variant. Either "pt-br" or "pt-pt"')
+
+parser.add_argument('filename', metavar='filename', type=str, nargs=1,
+        help='XML HAREM file')
+parser.add_argument('-o', '--output',
+        help='Output format. Either opennlp, corenlp, spacy')
+parser.add_argument('-s', '--split', type=float,
+        help='Splits output given percentage')
+parser.add_argument('-l', '--level', type=str,
+        help='Split level. Either "entity", "paragraph", "document"')
+parser.add_argument('-v', '--variant', type=str,
+        help='Portuguese variant. Either "pt-br" or "pt-pt"')
 
 args = parser.parse_args()
 vargs = vars(args)
@@ -42,6 +49,8 @@ printers = {
                      'paragraph': opennlp.print_ps },
         'corenlp': { 'document': corenlp.print_docs,
                      'paragraph': corenlp.print_ps },
+        'spacy': { 'document': iob.print_docs,
+                     'paragraph': iob.print_ps },
 }
 
 treino_teste(levels[level], round(len(levels[level])*split), variant+'.train', variant+'.test', printers[output][level], stdout)
