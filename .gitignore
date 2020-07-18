@@ -3,3 +3,4 @@ tools/
 *.bin
 __pycache__/
 */spacy/models/
+tmp/opennlp/runs/

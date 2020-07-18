@@ -4,7 +4,7 @@ import random
 import sys
 import unicodedata
 
-metadata = open('harem/metadata-segundo-harem-utf8.xml', 'r')
+metadata = open('/home/d/tcc/harem/metadata-segundo-harem-utf8.xml', 'r')
 soup_meta = BeautifulSoup(metadata, 'lxml')
 
 class Doc:

@@ -33,7 +33,7 @@ level = vargs['level']
 variant = vargs['variant'] or 'harem'
 
 f = open(filename, 'r')
-metadata = open('harem/colSegundoHAREM-meta.xml', 'r')
+metadata = open('/home/d/tcc/harem/colSegundoHAREM-meta.xml', 'r')
 
 documents = get_docs(f)
 paragraphs = get_paragraphs(documents)
