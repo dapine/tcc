@@ -1,12 +1,23 @@
 #!/bin/bash
 
-rm json/harem.json
-rm json/harem-test.json
-mv harem.test harem-test.test
-python3 -m spacy convert harem.train json/ -c iob
-python3 -m spacy convert harem-test.test json/ -c iob
+for i in {1..2}
+do
+    DIR=$(date +%Y-%m-%d-%H-%M-%S)
+    mkdir "runs/$DIR"
 
-rm -rf models/harem-holdout/*
-python3 -m spacy train pt models/harem-holdout/ json/harem.json json/harem.json
+    cd "runs/$DIR"
+    python ~/tcc/haremfmt.py ~/tcc/harem.xml -o spacy --split 0.7 --level paragraph
 
-python3 -m spacy evaluate models/harem-holdout/model-best/ json/harem-test.json
+    mv harem.test harem-test.test
+    mkdir json
+    mkdir -p models/harem-holdout
+
+    python -m spacy convert harem.train json/ -c iob
+    python -m spacy convert harem-test.test json/ -c iob
+
+    python -m spacy train pt models/harem-holdout/ json/harem.json json/harem.json
+
+    python -m spacy evaluate models/harem-holdout/model-best/ json/harem-test.json
+
+    cd ../../
+done

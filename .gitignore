@@ -5,3 +5,4 @@ __pycache__/
 */spacy/models/
 tmp/opennlp/runs/
 tmp/corenlp/runs/
+tmp/spacy/runs/
