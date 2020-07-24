@@ -47,6 +47,13 @@ for doc in documents:
     elif doc.variant == 'pt_PT':
         ptpt_docs.append(doc)
 
+MAX_DOCS_PTBR = len(ptbr_docs)
+MAX_DOCS_PTPT = len(ptpt_docs)
+MAX_DOCS_MIX = len(documents)
+MAX_PARA_PTBR = len(get_paragraphs(ptbr_docs))
+MAX_PARA_PTPT = len(get_paragraphs(ptpt_docs))
+MAX_PARA_MIX = len(paragraphs)
+
 # levels = {
 #         'document': documents,
 #         'paragraph': paragraphs
@@ -62,9 +69,10 @@ printers = {
 }
 
 variants = {
-        'pt-br': { 'document': ptbr_docs, 'paragraph': get_paragraphs(ptbr_docs) },
-        'pt-pt': { 'document': ptpt_docs, 'paragraph': get_paragraphs(ptpt_docs) },
-        'harem': { 'document': documents, 'paragraph': paragraphs }
+        'pt-br': { 'document': ptbr_docs[0:MAX_DOCS_PTBR], 'paragraph': get_paragraphs(ptbr_docs)[0:MAX_PARA_PTBR] },
+        'pt-pt': { 'document': ptpt_docs[0:MAX_DOCS_PTBR], 'paragraph': get_paragraphs(ptpt_docs)[0:MAX_PARA_PTBR] },
+        'mix': { 'document': documents[0:MAX_DOCS_PTBR], 'paragraph': paragraphs[0:MAX_PARA_PTBR] },
+        'harem': { 'document': documents, 'paragraph': paragraphs },
 }
 
 train_test(variants[variant][level], round(len(variants[variant][level])*split),
