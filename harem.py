@@ -21,22 +21,56 @@ class P:
         self.lista = []
         if type(tag) is bs4.element.Tag and tag.name == 'p':
             for e in tag.contents:
-                self.lista.append(Em(e))
+                if e.name == 'alt':
+                    self.lista = self.lista + choose_alt(e, 1)
+                elif e.name == 'omitido':
+                    pass
+                else:
+                    self.lista.append(Em(e))
 
 class Em:
     def __init__(self, tag):
-        if type(tag) is bs4.element.Tag:
+        if type(tag) is bs4.element.Tag and tag.name == 'em':
             self.categoria = tag.get('categ')
             self.texto = tag.string.strip()
             self.id = tag.get('id')
             self.tipo = tag.get('tipo')
             self.t = 'em'
         else:
-            self.categoria = ''
-            self.texto = tag.string.strip()
-            self.id = ''
-            self.tipo = ''
-            self.t = 'plain_text'
+            if tag.string != None:
+                self.categoria = ''
+                self.texto = tag.string.strip()
+                self.id = ''
+                self.tipo = ''
+                self.t = 'plain_text'
+
+def choose_alt(tag, order=0):
+    ems = []
+
+    if order == 0:
+        for em in tag.contents:
+            if len(em) >= 3:
+                if em == ' | ' or em[0:3] == ' | ':
+                    break
+
+            ems.append(Em(em))
+
+    elif order == 1:
+        ic = 0
+        for em in tag.contents:
+            if len(em) >= 3:
+                if em == ' | ':
+                    ic += 1
+                    break
+                elif em[0:3] == ' | ':
+                    break
+
+            ic += 1
+
+        for em in tag.contents[ic:len(tag.contents)]:
+            ems.append(Em(em))
+
+    return ems
 
 def get_docs(f):
     soup = BeautifulSoup(f, 'lxml')

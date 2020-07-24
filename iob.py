@@ -20,7 +20,7 @@ def print_ps(paragrafos):
                     print('{0} -X- O {1}'.format(tok, 'O'))
 
 def print_docs(documentos):
-    for doc in docs:
+    for doc in documentos:
         for p in doc.paragrafos:
             for t in p.lista:
                 if t.t == 'em':
@@ -40,6 +40,7 @@ def print_docs(documentos):
 
                     for tok in tokens:
                         print('{0} -X- O {1}'.format(tok, 'O'))
+        print()
 
 def print_ps_sem_acento(paragrafos):
     for p in paragrafos:
