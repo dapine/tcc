@@ -75,5 +75,7 @@ variants = {
         'harem': { 'document': documents, 'paragraph': paragraphs },
 }
 
-train_test(variants[variant][level], round(len(variants[variant][level])*split),
-        variant+'.train', variant+'.test', printers[output][level], stdout)
+kfold(variants[variant][level], 10, output, printers[output][level], stdout)
+
+# train_test(variants[variant][level], round(len(variants[variant][level])*split),
+#         variant+'.train', variant+'.test', printers[output][level], stdout)

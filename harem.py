@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup
 import random
 import sys
 import unicodedata
+import itertools
+import os
 
 metadata = open('/home/d/tcc/harem/metadata-segundo-harem-utf8.xml', 'r')
 soup_meta = BeautifulSoup(metadata, 'lxml')
@@ -97,6 +99,9 @@ def print_file(paragrafos, arquivo, print_ps, stdout):
         print_ps(paragrafos)
         sys.stdout = stdout
 
+def print_str(paragrafos, print_ps):
+    print_ps(paragrafos)
+
 def train_test(paragrafos, n, out_treino, out_teste, print_f, stdout):
     random.shuffle(paragrafos)
 
@@ -105,6 +110,31 @@ def train_test(paragrafos, n, out_treino, out_teste, print_f, stdout):
 
     print_file(treino, out_treino, print_f, stdout)
     print_file(teste, out_teste, print_f, stdout)
+
+def chunks(l, n):
+    for i in range(0, n):
+        yield l[i::n]
+
+def kfold(paragrafos, k, out_path, print_f, stdout):
+    split = chunks(paragrafos, k)
+    split = list(split)
+
+    for i in range(k):
+        subdir = 'k'+str(i)
+
+        test = split[i]
+        first = split[0:i]
+        last = split[i+1:len(split)]
+        train = first + last
+
+        train = list(itertools.chain.from_iterable(train))
+
+        fullpath = "/home/d/testes/"+subdir
+
+        os.mkdir(fullpath)
+
+        print_file(train, fullpath+"/train.train", print_f, stdout)
+        print_file(test, fullpath+"/test.test", print_f, stdout)
 
 def completo_mix(paragrafos, n, out_treino, out_teste, print_f, stdout):
     random.shuffle(paragrafos)
