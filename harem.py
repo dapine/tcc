@@ -116,6 +116,7 @@ def chunks(l, n):
         yield l[i::n]
 
 def kfold(paragrafos, k, out_path, print_f, stdout):
+    random.shuffle(paragrafos)
     split = chunks(paragrafos, k)
     split = list(split)
 

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# /home/d/Downloads/apache-opennlp-1.9.3/bin/
+export PATH=$PATH:$HOME/Downloads/apache-opennlp-1.9.3/bin/
+
+for i in {1..10}
+do
+    cd $i
+    for j in k0 k1 k2 k3 k4 k5 k6 k7 k8 k9
+    do
+        cd $j
+        opennlp TokenNameFinderTrainer -model model.bin -lang pt -data train.train -encoding UTF-8
+        opennlp TokenNameFinderEvaluator -model model.bin -data test.test -encoding UTF-8 > saida.txt
+        cd ..
+    done
+    cd ..
+done
