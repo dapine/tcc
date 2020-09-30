@@ -1,0 +1,14 @@
+#!/bin/bash
+
+for i in {1..2}
+do
+    cd $i
+    for j in k0
+    do
+        cd $j
+        java -Xmx3G -cp ../../stanford-ner.jar edu.stanford.nlp.ie.crf.CRFClassifier -prop harem.prop
+        java -Xmx3G -cp ../../stanford-ner.jar edu.stanford.nlp.ie.crf.CRFClassifier -loadClassifier model.ser.gz -testFile test.test > saida.txt 2>&1
+        cd ..
+    done
+    cd ..
+done
