@@ -19,6 +19,10 @@ def print_ps(paragrafos):
 
                 for tok in tokens:
                     print('{0} -X- O {1}'.format(tok, 'O'))
+        if len(p.lista) == 0:
+            pass
+        else:
+            print()
 
 def print_docs(documentos):
     for doc in documentos:

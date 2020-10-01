@@ -46,6 +46,9 @@ class Em:
                 self.tipo = ''
                 self.t = 'plain_text'
 
+    def __repr__(self):
+        return '<Em: ' + self.texto + '>'
+
 def choose_alt(tag, order=0):
     ems = []
 
