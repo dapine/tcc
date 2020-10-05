@@ -6,3 +6,4 @@ __pycache__/
 tmp/opennlp/runs/
 tmp/corenlp/runs/
 tmp/spacy/runs/
+tmp/opennlp/pt-br/
