@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# /home/d/Downloads/apache-opennlp-1.9.3/bin/
+export PATH=$PATH:$HOME/Downloads/apache-opennlp-1.9.3/bin/
+for x in 'mix-mix' 'mix-pt-br' 'mix-pt-pt'
+do
+    cd $x
+    mkdir 1 2 3 4 5 6 7 8 9 10
+    for i in {1..10}
+    do
+        cd $i
+        mkdir k0 k1 k2 k3 k4 k5 k6 k7 k8 k9
+        for j in k0 k1 k2 k3 k4 k5 k6 k7 k8 k9
+        do
+            cd $j
+            case $x in
+                'mix-mix')
+                    python3 ../../../../../../haremfmt.py -o corenlp -l paragraph -v mix -s 0.7 ../../../../../../harem.xml
+                    mv mix.train train.train
+                    mv mix.test test.test
+                ;;
+                'mix-pt-br')
+                    python3 ../../../../../../haremfmt.py -o corenlp -l paragraph -v mix -s 1.0 ../../../../../../harem.xml
+                    mv mix.train train.train
+                    python3 ../../../../../../haremfmt.py -o corenlp -l paragraph -v pt-br -s 1.0 ../../../../../../harem.xml
+                    mv pt-br.train test.test
+                    ;;
+                'mix-pt-pt')
+                    python3 ../../../../../../haremfmt.py -o corenlp -l paragraph -v mix -s 1.0 ../../../../../../harem.xml
+                    mv mix.train train.train
+                    python3 ../../../../../../haremfmt.py -o corenlp -l paragraph -v pt-pt -s 1.0 ../../../../../../harem.xml
+                    mv pt-pt.train test.test
+                    ;;
+            esac
+
+            cp ../../../../props/harem-mix.prop harem.prop
+            java -Xmx3G -cp ../../../../stanford-ner.jar edu.stanford.nlp.ie.crf.CRFClassifier -prop harem.prop
+            java -Xmx3G -cp ../../../../stanford-ner.jar edu.stanford.nlp.ie.crf.CRFClassifier -loadClassifier model.ser.gz -testFile test.test > saida.txt 2>&1
+            cd ..
+        done
+        cd ..
+    done
+    cd ..
+done

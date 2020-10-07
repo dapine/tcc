@@ -1,5 +1,5 @@
-trainFile = mix.train
-serializeTo = harem-mix.ser.gz
+trainFile = train.train
+serializeTo = model.ser.gz
 
 map = word=0,answer=1
 

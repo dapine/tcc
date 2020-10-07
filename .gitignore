@@ -9,3 +9,6 @@ tmp/spacy/runs/
 tmp/opennlp/pt-br/
 tmp/opennlp/pt-pt/
 tmp/opennlp/mix/
+tmp/corenlp/pt-br/
+tmp/corenlp/pt-pt/
+tmp/corenlp/mix/

@@ -1,5 +1,5 @@
-trainFile = ptpt.train
-serializeTo = ptpt.ser.gz
+trainFile = train.train
+serializeTo = model.ser.gz
 
 map = word=0,answer=1
 
