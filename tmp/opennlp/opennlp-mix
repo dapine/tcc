@@ -2,7 +2,7 @@
 
 # /home/d/Downloads/apache-opennlp-1.9.3/bin/
 export PATH=$PATH:$HOME/Downloads/apache-opennlp-1.9.3/bin/
-for x in 'pt-br-mix' 'pt-br-pt-br' 'pt-br-pt-pt'
+for x in 'mix-mix' 'mix-pt-br' 'mix-pt-pt'
 do
     cd $x
     mkdir 1 2 3 4 5 6 7 8 9 10
@@ -14,20 +14,20 @@ do
         do
             cd $j
             case $x in
-                'pt-br-pt-br')
-                    python3 ../../../../../../haremfmt.py -o opennlp -l paragraph -v pt-br -s 0.7 ../../../../../../harem.xml
-                    mv pt-br.train train.train
-                    mv pt-br.test test.test
+                'mix-mix')
+                    python3 ../../../../../../haremfmt.py -o opennlp -l paragraph -v mix -s 0.7 ../../../../../../harem.xml
+                    mv mix.train train.train
+                    mv mix.test test.test
                 ;;
-                'pt-br-mix')
-                    python3 ../../../../../../haremfmt.py -o opennlp -l paragraph -v pt-br -s 1.0 ../../../../../../harem.xml
-                    mv pt-br.train train.train
+                'mix-pt-br')
                     python3 ../../../../../../haremfmt.py -o opennlp -l paragraph -v mix -s 1.0 ../../../../../../harem.xml
-                    mv mix.train test.test
-                    ;;
-                'pt-br-pt-pt')
+                    mv mix.train train.train
                     python3 ../../../../../../haremfmt.py -o opennlp -l paragraph -v pt-br -s 1.0 ../../../../../../harem.xml
-                    mv pt-br.train train.train
+                    mv pt-br.train test.test
+                    ;;
+                'mix-pt-pt')
+                    python3 ../../../../../../haremfmt.py -o opennlp -l paragraph -v mix -s 1.0 ../../../../../../harem.xml
+                    mv mix.train train.train
                     python3 ../../../../../../haremfmt.py -o opennlp -l paragraph -v pt-pt -s 1.0 ../../../../../../harem.xml
                     mv pt-pt.train test.test
                     ;;

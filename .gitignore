@@ -7,3 +7,5 @@ tmp/opennlp/runs/
 tmp/corenlp/runs/
 tmp/spacy/runs/
 tmp/opennlp/pt-br/
+tmp/opennlp/pt-pt/
+tmp/opennlp/mix/

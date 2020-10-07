@@ -2,7 +2,7 @@
 
 # /home/d/Downloads/apache-opennlp-1.9.3/bin/
 export PATH=$PATH:$HOME/Downloads/apache-opennlp-1.9.3/bin/
-for x in 'pt-br-mix' 'pt-br-pt-br' 'pt-br-pt-pt'
+for x in 'pt-pt-mix' 'pt-pt-pt-br' 'pt-pt-pt-pt'
 do
     cd $x
     mkdir 1 2 3 4 5 6 7 8 9 10
@@ -14,22 +14,22 @@ do
         do
             cd $j
             case $x in
-                'pt-br-pt-br')
-                    python3 ../../../../../../haremfmt.py -o opennlp -l paragraph -v pt-br -s 0.7 ../../../../../../harem.xml
-                    mv pt-br.train train.train
-                    mv pt-br.test test.test
+                'pt-pt-pt-pt')
+                    python3 ../../../../../../haremfmt.py -o opennlp -l paragraph -v pt-pt -s 0.7 ../../../../../../harem.xml
+                    mv pt-pt.train train.train
+                    mv pt-pt.test test.test
                 ;;
-                'pt-br-mix')
-                    python3 ../../../../../../haremfmt.py -o opennlp -l paragraph -v pt-br -s 1.0 ../../../../../../harem.xml
-                    mv pt-br.train train.train
+                'pt-pt-mix')
+                    python3 ../../../../../../haremfmt.py -o opennlp -l paragraph -v pt-pt -s 1.0 ../../../../../../harem.xml
+                    mv pt-pt.train train.train
                     python3 ../../../../../../haremfmt.py -o opennlp -l paragraph -v mix -s 1.0 ../../../../../../harem.xml
                     mv mix.train test.test
                     ;;
-                'pt-br-pt-pt')
-                    python3 ../../../../../../haremfmt.py -o opennlp -l paragraph -v pt-br -s 1.0 ../../../../../../harem.xml
-                    mv pt-br.train train.train
+                'pt-pt-pt-br')
                     python3 ../../../../../../haremfmt.py -o opennlp -l paragraph -v pt-pt -s 1.0 ../../../../../../harem.xml
-                    mv pt-pt.train test.test
+                    mv pt-pt.train train.train
+                    python3 ../../../../../../haremfmt.py -o opennlp -l paragraph -v pt-br -s 1.0 ../../../../../../harem.xml
+                    mv pt-br.train test.test
                     ;;
             esac
 
