@@ -12,3 +12,6 @@ tmp/opennlp/mix/
 tmp/corenlp/pt-br/
 tmp/corenlp/pt-pt/
 tmp/corenlp/mix/
+tmp/spacy/mix/
+tmp/spacy/pt-pt/
+tmp/spacy/pt-br/
