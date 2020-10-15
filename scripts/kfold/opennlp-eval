@@ -10,7 +10,10 @@ do
     do
         cd $j
         # Encontra a linha "TOTAL", Seleciona o valor da 7a coluna, tira o "."
-        echo $(grep 'TOTAL:' saida.txt | awk '{print $7}' | sed 's/.$//')
+        # print $7 para F
+        # print $5 para R
+        # print $3 para P
+        echo $(grep 'TOTAL:' saida.txt | awk '{print $5}' | sed 's/.$//')
         cd ..
     done
     cd ..

@@ -7,10 +7,11 @@ do
     do
         cd $j
         # Encontra a linha "TOTAL", Seleciona o valor da 7a coluna, tira o "."
-        # print $4 para F1
-        # print $3 para R
-        # print $2 para P
-        echo $(tail saida.txt | grep 'Totals' | awk '{print $3}')
+        # NER F para F
+        # NER R para R
+        # NER P para P
+
+        echo $(grep 'NER R' saida.txt | awk '{print $3}')
         cd ..
     done
     cd ..
