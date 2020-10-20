@@ -13,7 +13,17 @@ do
         # print $7 para F
         # print $5 para R
         # print $3 para P
-        echo $(grep 'TOTAL:' saida.txt | awk '{print $5}' | sed 's/.$//')
+        case $2 in
+            P)
+                echo $(grep $1 saida.txt | awk '{print $3}' | sed 's/.$//')
+                ;;
+            R)
+                echo $(grep $1 saida.txt | awk '{print $5}' | sed 's/.$//')
+                ;;
+            F)
+                echo $(grep $1 saida.txt | awk '{print $7}' | sed 's/.$//')
+                ;;
+        esac
         cd ..
     done
     cd ..

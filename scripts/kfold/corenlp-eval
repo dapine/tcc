@@ -10,7 +10,18 @@ do
         # print $4 para F1
         # print $3 para R
         # print $2 para P
-        echo $(tail saida.txt | grep 'Totals' | awk '{print $3}')
+        case $2 in
+            P)
+                echo $(tail saida.txt -n 13 | grep $1 | awk '{print $2}')
+                ;;
+            R)
+                echo $(tail saida.txt -n 13 | grep $1 | awk '{print $3}')
+                ;;
+            F)
+                echo $(tail saida.txt -n 13 | grep $1 | awk '{print $4}')
+                ;;
+        esac
+        # echo $(tail saida.txt -n 13 | grep $1 | awk '{print $3}')
         cd ..
     done
     cd ..
